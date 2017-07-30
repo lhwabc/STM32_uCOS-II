@@ -45,7 +45,7 @@
 //#define SYSCLK_FREQ_HSE    HSE_Value
 //#define SYSCLK_FREQ_20MHz  20000000
 //#define SYSCLK_FREQ_36MHz  36000000
-//#define SYSCLK_FREQ_48MHz  48000000
+#define SYSCLK_FREQ_48MHz  48000000
 //#define SYSCLK_FREQ_56MHz  56000000
 //#define SYSCLK_FREQ_72MHz  72000000
 
@@ -511,7 +511,6 @@ static void SetSysClockTo36(void)
 static void SetSysClockTo48(void)
 {
   __IO uint32_t StartUpCounter = 0, HSEStatus = 0;
-  
   /*!< SYSCLK, HCLK, PCLK2 and PCLK1 configuration ---------------------------*/    
   /*!< Enable HSE */    
   RCC->CR |= ((uint32_t)RCC_CR_HSEON);
@@ -576,7 +575,40 @@ static void SetSysClockTo48(void)
          configuration. User can add here some code to deal with this error */    
 
     /*!< Go to infinite loop */
-    while (1)
+    /*!< Enable Prefetch Buffer */
+    FLASH->ACR |= FLASH_ACR_PRFTBE;
+
+    /*!< Flash 1 wait state */
+    FLASH->ACR &= (uint32_t)((uint32_t)~FLASH_ACR_LATENCY);
+    FLASH->ACR |= (uint32_t)FLASH_ACR_LATENCY_1;    
+ 
+    /*!< HCLK = SYSCLK */
+    RCC->CFGR |= (uint32_t)RCC_CFGR_HPRE_DIV1;
+      
+    /*!< PCLK2 = HCLK */
+    RCC->CFGR |= (uint32_t)RCC_CFGR_PPRE2_DIV1;
+    
+    /*!< PCLK1 = HCLK */
+    RCC->CFGR |= (uint32_t)RCC_CFGR_PPRE1_DIV2;
+    
+    /*!< PLLCLK = 4MHz * 12 = 48 MHz */
+    RCC->CFGR &= (uint32_t)((uint32_t)~(RCC_CFGR_PLLSRC | RCC_CFGR_PLLMULL));
+    RCC->CFGR |= (uint32_t)(RCC_CFGR_PLLMULL12);
+
+    /*!< Enable PLL */
+    RCC->CR |= RCC_CR_PLLON;
+
+    /*!< Wait till PLL is ready */
+    while((RCC->CR & RCC_CR_PLLRDY) == 0)
+    {
+    }
+
+    /*!< Select PLL as system clock source */
+    RCC->CFGR &= (uint32_t)((uint32_t)~(RCC_CFGR_SW));
+    RCC->CFGR |= (uint32_t)RCC_CFGR_SW_PLL;    
+
+    /*!< Wait till PLL is used as system clock source */
+    while ((RCC->CFGR & (uint32_t)RCC_CFGR_SWS) != (uint32_t)0x08)
     {
     }
   } 

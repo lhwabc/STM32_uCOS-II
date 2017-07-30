@@ -416,9 +416,9 @@
           <GroupName>USER</GroupName>
           <Files>
             <File>
-              <FileName>main.c</FileName>
+              <FileName>app.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\main.c</FilePath>
+              <FilePath>..\APP\app.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_it.c</FileName>
@@ -474,13 +474,6 @@
         </Group>
         <Group>
           <GroupName>APP</GroupName>
-          <Files>
-            <File>
-              <FileName>app.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\APP\app.c</FilePath>
-            </File>
-          </Files>
         </Group>
         <Group>
           <GroupName>uCOS-II\Source</GroupName>

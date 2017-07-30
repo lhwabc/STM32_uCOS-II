@@ -45,7 +45,7 @@
 //#define SYSCLK_FREQ_HSE    HSE_Value
 //#define SYSCLK_FREQ_20MHz  20000000
 //#define SYSCLK_FREQ_36MHz  36000000
-#define SYSCLK_FREQ_48MHz  48000000
+//#define SYSCLK_FREQ_48MHz  48000000
 //#define SYSCLK_FREQ_56MHz  56000000
 //#define SYSCLK_FREQ_72MHz  72000000
 
@@ -111,11 +111,11 @@
   const uint32_t SystemFrequency_APB1Clk = (SYSCLK_FREQ_72MHz/2);  /*!< APB Peripheral bus 1 (low)  speed   */
   const uint32_t SystemFrequency_APB2Clk = SYSCLK_FREQ_72MHz;      /*!< APB Peripheral bus 2 (high) speed   */
 #else /*!< HSI Selected as System Clock source */
-  const uint32_t SystemFrequency         = (HSI_Value*6);          /*!< System Clock Frequency (Core Clock) */
-  const uint32_t SystemFrequency_SysClk  = (HSI_Value*6);          /*!< System clock                        */
-  const uint32_t SystemFrequency_AHBClk  = (HSI_Value*6);          /*!< AHB System bus speed                */
-  const uint32_t SystemFrequency_APB1Clk = (HSI_Value*6/2);        /*!< APB Peripheral bus 1 (low)  speed   */
-  const uint32_t SystemFrequency_APB2Clk = (HSI_Value*6);          /*!< APB Peripheral bus 2 (high) speed   */
+  const uint32_t SystemFrequency         = HSI_Value;                /*!< System Clock Frequency (Core Clock) */
+  const uint32_t SystemFrequency_SysClk  = HSI_Value;                /*!< System clock                        */
+  const uint32_t SystemFrequency_AHBClk  = HSI_Value;                /*!< AHB System bus speed                */
+  const uint32_t SystemFrequency_APB1Clk = HSI_Value;                /*!< APB Peripheral bus 1 (low)  speed   */
+  const uint32_t SystemFrequency_APB2Clk = HSI_Value;                /*!< APB Peripheral bus 2 (high) speed   */
 #endif
 
 /**
@@ -140,8 +140,6 @@ static void SetSysClock(void);
   static void SetSysClockTo56(void);  
 #elif defined SYSCLK_FREQ_72MHz
   static void SetSysClockTo72(void);
-#else
-  static void SetSysClockToHSI(void);
 #endif
 
 /**
@@ -204,12 +202,10 @@ static void SetSysClock(void)
   SetSysClockTo56();  
 #elif defined SYSCLK_FREQ_72MHz
   SetSysClockTo72();
-#else
+#endif
  
  /*!< If none of the define above is enabled, the HSI is used as System clock
     source (default after reset) */ 
-  SetSysClockToHSI();
-#endif
 }
 
 /**
@@ -751,55 +747,10 @@ static void SetSysClockTo72(void)
     }
   }
 }
-#else
+#endif
 
 /**
-  * @brief Sets System clock frequency to HSI and configure HCLK, PCLK2 
-  *        and PCLK1 prescalers. 
-  * @param None.
-  * @arg None.
-  * @note : This function should be used only after reset.
-  * @retval value: None.
+  * @}
   */
-static void SetSysClockToHSI(void)
-{
-    /*!< Enable Prefetch Buffer */
-    FLASH->ACR |= FLASH_ACR_PRFTBE;
-
-    /*!< Flash 2 wait state */
-    FLASH->ACR &= (uint32_t)((uint32_t)~FLASH_ACR_LATENCY);
-    FLASH->ACR |= (uint32_t)FLASH_ACR_LATENCY_2;
-    
-    /*!< HCLK = SYSCLK */
-    RCC->CFGR |= (uint32_t)RCC_CFGR_HPRE_DIV1;
-      
-    /*!< PCLK2 = HCLK */
-    RCC->CFGR |= (uint32_t)RCC_CFGR_PPRE2_DIV1;
-    
-    /*!< PCLK1 = HCLK */
-    RCC->CFGR |= (uint32_t)RCC_CFGR_PPRE1_DIV2;
-    
-    /*!< PLLCLK = 4MHz * 12 = 48 MHz */
-    RCC->CFGR &= (uint32_t)((uint32_t)~(RCC_CFGR_PLLSRC | RCC_CFGR_PLLMULL));
-    RCC->CFGR |= (uint32_t)(RCC_CFGR_PLLMULL12);
-    
-    /*!< Enable PLL */
-    RCC->CR |= RCC_CR_PLLON;
-    
-	/*!< Wait till PLL is ready */
-    while((RCC->CR & RCC_CR_PLLRDY) == 0)
-    {
-    }
-    
-	/*!< Select PLL as system clock source */
-    RCC->CFGR &= (uint32_t)((uint32_t)~(RCC_CFGR_SW));
-    RCC->CFGR |= (uint32_t)RCC_CFGR_SW_PLL;    
-
-    /*!< Wait till PLL is used as system clock source */
-    while ((RCC->CFGR & (uint32_t)RCC_CFGR_SWS) != (uint32_t)0x08)
-    {
-    }
-}
-#endif
   
 /******************* (C) COPYRIGHT 2009 STMicroelectronics *****END OF FILE****/

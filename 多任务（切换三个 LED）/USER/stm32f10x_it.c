@@ -155,32 +155,9 @@ void SysTick_Handler(void)
 {
 }*/
 
+/**
+  * @}
+  */ 
 
-/******************************************************************************/
-/*            STM32 Peripherals Interrupt Handlers                            */
-/*******************************************************************************
-* Function Name  : USB_IRQHandler
-* Description    : This function handles USB Low Priority interrupts
-*                  requests.
-* Input          : None
-* Output         : None
-* Return         : None
-*******************************************************************************/ 
-void USB_LP_CAN1_RX0_IRQHandler(void) 
-{
-	USB_Istr();
-}
- 
-/*******************************************************************************
-* Function Name  : USBWakeUp_IRQHandler
-* Description    : This function handles USB WakeUp interrupt request.
-* Input          : None
-* Output         : None
-* Return         : None
-*******************************************************************************/
-void USBWakeUp_IRQHandler(void)
-{
-	EXTI->PR|=1<<18;//清除USB唤醒中断挂起位 
-}
 
 /******************* (C) COPYRIGHT 2009 STMicroelectronics *****END OF FILE****/

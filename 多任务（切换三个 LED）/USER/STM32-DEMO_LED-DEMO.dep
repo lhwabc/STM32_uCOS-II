@@ -50,7 +50,7 @@ I (..\USER\stm32f10x_conf.h)(0x4E648C2A)
 I (..\FWlib\inc\stm32f10x_gpio.h)(0x4E64CA32)
 F (..\CMSIS\core_cm3.c)(0x49D96948)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\CMSIS -I..\FWlib\inc -I..\USER -I..\APP -I..\BSP -I..\uCOS-II\Ports -I..\uCOS-II\Source-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F10x-DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD-o ..\output\core_cm3.o --omf_browse ..\output\core_cm3.crf --depend ..\output\core_cm3.d)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C7C554)
-F (..\CMSIS\system_stm32f10x.c)(0x597DD90E)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\CMSIS -I..\FWlib\inc -I..\USER -I..\APP -I..\BSP -I..\uCOS-II\Ports -I..\uCOS-II\Source-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F10x-DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD-o ..\output\system_stm32f10x.o --omf_browse ..\output\system_stm32f10x.crf --depend ..\output\system_stm32f10x.d)
+F (..\CMSIS\system_stm32f10x.c)(0x597DE901)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\CMSIS -I..\FWlib\inc -I..\USER -I..\APP -I..\BSP -I..\uCOS-II\Ports -I..\uCOS-II\Source-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F10x-DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD-o ..\output\system_stm32f10x.o --omf_browse ..\output\system_stm32f10x.crf --depend ..\output\system_stm32f10x.d)
 I (..\CMSIS\stm32f10x.h)(0x4DECC1EC)
 I (..\CMSIS\core_cm3.h)(0x49D96948)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C7C554)

@@ -1,7 +1,7 @@
 Dependencies for Project 'STM32-DEMO', Target 'LED-DEMO': (DO NOT MODIFY !)
 F (..\CMSIS\startup\startup_stm32f10x_hd.s)(0x4ED949C8)(--cpu Cortex-M3 -g --apcs=interwork --pd "__MICROLIB SETA 1"-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F10x--list ..\listing\startup_stm32f10x_hd.lst --xref -o ..\output\startup_stm32f10x_hd.o --depend ..\output\startup_stm32f10x_hd.d)
-F (..\APP\app.c)(0x597DD0D9)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\CMSIS -I..\FWlib\inc -I..\USER -I..\APP -I..\BSP -I..\uCOS-II\Ports -I..\uCOS-II\Source-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F10x-DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD-o ..\output\app.o --omf_browse ..\output\app.crf --depend ..\output\app.d)
-I (..\USER\includes.h)(0x597DD1B7)
+F (.\stm32f10x_it.c)(0x4ED952F4)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\CMSIS -I..\FWlib\inc -I..\USER -I..\APP -I..\BSP -I..\uCOS-II\Ports -I..\uCOS-II\Source-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F10x-DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD-o ..\output\stm32f10x_it.o --omf_browse ..\output\stm32f10x_it.crf --depend ..\output\stm32f10x_it.d)
+I (includes.h)(0x597DD1B7)
 I (..\CMSIS\stm32f10x.h)(0x4DECC1EC)
 I (..\CMSIS\core_cm3.h)(0x49D96948)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C7C554)
@@ -16,8 +16,8 @@ I (..\uCOS-II\Ports\os_cpu.h)(0x4ED949C8)
 I (..\BSP\BSP.h)(0x4ED94AC2)
 I (..\APP\app.h)(0x4ED96C52)
 I (..\BSP\led.h)(0x597DD192)
-F (.\stm32f10x_it.c)(0x4ED952F4)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\CMSIS -I..\FWlib\inc -I..\USER -I..\APP -I..\BSP -I..\uCOS-II\Ports -I..\uCOS-II\Source-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F10x-DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD-o ..\output\stm32f10x_it.o --omf_browse ..\output\stm32f10x_it.crf --depend ..\output\stm32f10x_it.d)
-I (includes.h)(0x597DD1B7)
+F (..\APP\app.c)(0x597DD0D9)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I..\CMSIS -I..\FWlib\inc -I..\USER -I..\APP -I..\BSP -I..\uCOS-II\Ports -I..\uCOS-II\Source-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F10x-DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD-o ..\output\app.o --omf_browse ..\output\app.crf --depend ..\output\app.d)
+I (..\USER\includes.h)(0x597DD1B7)
 I (..\CMSIS\stm32f10x.h)(0x4DECC1EC)
 I (..\CMSIS\core_cm3.h)(0x49D96948)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C7C554)

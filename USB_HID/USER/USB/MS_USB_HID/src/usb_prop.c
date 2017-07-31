@@ -33,7 +33,7 @@
 #include "usb_desc.h"
 #include "usb_pwr.h"
 #include "hw_config.h"
-#include "sys.h"
+#include "stm32f10x.h"
 #include "delay.h"
 
 /* Private typedef -----------------------------------------------------------*/
@@ -222,17 +222,17 @@ void set_report_deocder()
     switch(ms8005otp.usb_hid_rx_buffer[0])  
     {
         case 0x22:      //enter icp mode
-//            ms8005otp.icp_status  =  ICP_init();
-//            LED_RED = 0;
-//            LED_GREEN = 1;
+            ms8005otp.icp_status  =  ICP_init();
+            LED_RED = 0;
+            LED_GREEN = 1;
             break;
         case 0x33:      //exit icp mode
-//            ICP_deinit();
-//            LED_RED = 1;
-//            LED_GREEN = 0;
+            ICP_deinit();
+            LED_RED = 1;
+            LED_GREEN = 0;
             break;
         case MS_HID_CMD_SET_CONFIG:
- //           Set_ICP_mode(ms8005otp.usb_hid_rx_buffer[1]);
+            Set_ICP_mode(ms8005otp.usb_hid_rx_buffer[1]);
             break;
         case 0xbb:      //读编程器数据标志
             ms8005otp.otp_read_addr = ms8005otp.usb_hid_rx_buffer[1] + (uint16_t)ms8005otp.usb_hid_rx_buffer[2]*256;
@@ -245,11 +245,11 @@ void set_report_deocder()
         case 0xdd:      //写数据标志，编程芯片
             ms8005otp.otp_write_addr = ms8005otp.usb_hid_rx_buffer[1] + (uint16_t)ms8005otp.usb_hid_rx_buffer[2]*256;
             ms8005otp.otp_write_length = ms8005otp.usb_hid_rx_buffer[3];
- //           ICP_write(ms8005otp.otp_write_addr,ms8005otp.otp_write_length, &ms8005otp.usb_hid_rx_buffer[4]);
+            ICP_write(ms8005otp.otp_write_addr,ms8005otp.otp_write_length, &ms8005otp.usb_hid_rx_buffer[4]);
             if(u8_count > 1)
             {
- //               LED_RED_TOGGLE;
- //               LED_GREEN_TOGGLE;
+                LED_RED_TOGGLE;
+                LED_GREEN_TOGGLE;
                 u8_count = 0;
             }
             u8_count ++;
@@ -259,9 +259,9 @@ void set_report_deocder()
             ms8005otp.otp_write_length = ms8005otp.usb_hid_rx_buffer[3];
             if(ms8005otp.otp_write_addr == 0)
             {
-//                clear_memory();   // 地址为0 ，擦除MEMORY;
+                clear_memory();   // 地址为0 ，擦除MEMORY;
             }
-//            STMFLASH_Write(ms8005otp.otp_write_addr  + STM32_FLASH_DATA_BASE,(u16 *)(&ms8005otp.usb_hid_rx_buffer[4]),(ms8005otp.otp_write_length/2 + ms8005otp.otp_write_length%2));
+            STMFLASH_Write(ms8005otp.otp_write_addr  + STM32_FLASH_DATA_BASE,(u16 *)(&ms8005otp.usb_hid_rx_buffer[4]),(ms8005otp.otp_write_length/2 + ms8005otp.otp_write_length%2));
             break;
         default:
             break;
@@ -316,7 +316,7 @@ uint8_t *get_report(uint16_t Length)
             break;
         case MS_HID_CMD_GET_CONFIG:
             ms8005otp.usb_hid_tx_buffer[0] = MS_HID_CMD_GET_CONFIG;
-//            ms8005otp.usb_hid_tx_buffer[1] = Get_ICP_mode();
+            ms8005otp.usb_hid_tx_buffer[1] = Get_ICP_mode();
             break;
         case 0x22:      //icp status.
             ms8005otp.usb_hid_tx_buffer[0] = 0x22;
@@ -336,11 +336,11 @@ uint8_t *get_report(uint16_t Length)
                 ms8005otp.usb_hid_tx_buffer[3] = ms8005otp.otp_read_length;
                 ms8005otp.otp_read_length = 0;   //已经发送全部数据
             }
-//            ICP_read(ms8005otp.otp_read_addr,ms8005otp.usb_hid_tx_buffer[3],&ms8005otp.usb_hid_tx_buffer[4]);
+            ICP_read(ms8005otp.otp_read_addr,ms8005otp.usb_hid_tx_buffer[3],&ms8005otp.usb_hid_tx_buffer[4]);
             if(u8_count > 5)
             {
-//                LED_RED_TOGGLE;
-//                LED_GREEN_TOGGLE;
+                LED_RED_TOGGLE;
+                LED_GREEN_TOGGLE;
                 u8_count = 0;
             }
             u8_count ++;
@@ -362,7 +362,7 @@ uint8_t *get_report(uint16_t Length)
             }
             for(i = 0;i<ms8005otp.usb_hid_tx_buffer[3]/2 + ms8005otp.usb_hid_tx_buffer[3]%2 ;i++)
             {
- //               j = STMFLASH_ReadHalfWord(STM32_FLASH_DATA_BASE + ms8005otp.otp_read_addr+2*i);
+                j = STMFLASH_ReadHalfWord(STM32_FLASH_DATA_BASE + ms8005otp.otp_read_addr+2*i);
                 ms8005otp.usb_hid_tx_buffer[2*i+4] = j;
                 ms8005otp.usb_hid_tx_buffer[2*i+1+4] = j>>8;
             }

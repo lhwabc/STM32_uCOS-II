@@ -413,17 +413,17 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>USER</GroupName>
+          <GroupName>APP</GroupName>
           <Files>
-            <File>
-              <FileName>app.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\APP\app.c</FilePath>
-            </File>
             <File>
               <FileName>stm32f10x_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\stm32f10x_it.c</FilePath>
+            </File>
+            <File>
+              <FileName>app.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\app.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -471,9 +471,6 @@
               <FilePath>..\BSP\led.c</FilePath>
             </File>
           </Files>
-        </Group>
-        <Group>
-          <GroupName>APP</GroupName>
         </Group>
         <Group>
           <GroupName>uCOS-II\Source</GroupName>

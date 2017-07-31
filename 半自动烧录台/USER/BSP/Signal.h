@@ -19,7 +19,7 @@
 
 #define START_A_GPIO_PORT           GPIOB
 #define START_A_GPIO_CLK            RCC_APB2Periph_GPIOB
-#define START_A_GPIO_PIN            GPIO_Pin_15
+#define START_A_GPIO_PIN            GPIO_Pin_14
 
 #define BusySignal_A_GPIO_PORT      GPIOA
 #define BusySignal_A_GPIO_CLK       RCC_APB2Periph_GPIOA

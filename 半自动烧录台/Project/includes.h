@@ -8,6 +8,8 @@
 #include    "app.h"
 #include    "app_cfg.h"
 #include    "Signal.h"
+#include    "ICP.h"
+#include    "OLP.h"
 
 #include    "hw_config.h"
 #include    "usb_lib.h"

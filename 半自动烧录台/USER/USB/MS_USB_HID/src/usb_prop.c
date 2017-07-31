@@ -247,9 +247,9 @@ void set_report_deocder()
             ms8005otp.otp_write_length = ms8005otp.usb_hid_rx_buffer[3];
             if(ms8005otp.otp_write_addr == 0)
             {
-//                clear_memory();   // 地址为0 ，擦除MEMORY;
+                clear_memory();   // 地址为0 ，擦除MEMORY;
             }
-//            STMFLASH_Write(ms8005otp.otp_write_addr  + STM32_FLASH_DATA_BASE,(u16 *)(&ms8005otp.usb_hid_rx_buffer[4]),(ms8005otp.otp_write_length/2 + ms8005otp.otp_write_length%2));
+            STMFLASH_Write(ms8005otp.otp_write_addr  + STM32_FLASH_DATA_BASE,(u16 *)(&ms8005otp.usb_hid_rx_buffer[4]),(ms8005otp.otp_write_length/2 + ms8005otp.otp_write_length%2));
             break;
         default:
             break;
@@ -342,7 +342,7 @@ uint8_t *get_report(uint16_t Length)
             }
             for(i = 0;i<ms8005otp.usb_hid_tx_buffer[3]/2 + ms8005otp.usb_hid_tx_buffer[3]%2 ;i++)
             {
-//                j = STMFLASH_ReadHalfWord(STM32_FLASH_DATA_BASE + ms8005otp.otp_read_addr+2*i);
+                j = STMFLASH_ReadHalfWord(STM32_FLASH_DATA_BASE + ms8005otp.otp_read_addr+2*i);
                 ms8005otp.usb_hid_tx_buffer[2*i+4] = j;
                 ms8005otp.usb_hid_tx_buffer[2*i+1+4] = j>>8;
             }

@@ -14,5 +14,6 @@
 /**************** 用户任务声明 *******************/
 void App_TaskStart(void *p_arg);
 void App_usb_task(void *p_arg);
+void offline_download_task(void *pdata);
 
 #endif  //_APP_H_

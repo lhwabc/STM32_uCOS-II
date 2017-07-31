@@ -227,8 +227,8 @@ typedef const uint16_t uc16;  /*!< Read Only */
 typedef const uint8_t uc8;   /*!< Read Only */
 
 typedef __IO uint32_t  vu32;
-typedef __IO uint16_t vu16;
-typedef __IO uint8_t  vu8;
+typedef __IO uint16_t  vu16;
+typedef __IO uint8_t   vu8;
 
 typedef __I uint32_t vuc32;  /*!< Read Only */
 typedef __I uint16_t vuc16;  /*!< Read Only */

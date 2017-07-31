@@ -54,11 +54,11 @@ uint8_t START_A_Scan(void)
 	if(GPIO_ReadInputDataBit(START_A_GPIO_PORT,START_A_GPIO_PIN) == EN)  
 	{	 
 		while(GPIO_ReadInputDataBit(START_A_GPIO_PORT,START_A_GPIO_PIN) == DIS);   
-		return 	EN;
+		return 	1;
 	}
 	else
     {
-		return DIS;
+		return 0;
     }
 }
 
